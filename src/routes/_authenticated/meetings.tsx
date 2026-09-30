@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { EmptySection } from '@/features/shell/Content';
+export const Route=createFileRoute('/_authenticated/meetings')({head:()=>({meta:[{title:'Réunions & PV — Aeronova Engineering'},{name:'description',content:'Espace Réunions & PV de l’équipe Aeronova Engineering.'},{property:'og:title',content:'Réunions & PV — Aeronova Engineering'},{property:'og:description',content:'Espace Réunions & PV de l’équipe Aeronova Engineering.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=> <EmptySection title="meetings"/>});

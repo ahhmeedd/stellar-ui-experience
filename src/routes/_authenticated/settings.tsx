@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { EmptySection } from '@/features/shell/Content';
+export const Route=createFileRoute('/_authenticated/settings')({head:()=>({meta:[{title:'Paramètres — Aeronova Engineering'},{name:'description',content:'Espace Paramètres de l’équipe Aeronova Engineering.'},{property:'og:title',content:'Paramètres — Aeronova Engineering'},{property:'og:description',content:'Espace Paramètres de l’équipe Aeronova Engineering.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=> <EmptySection title="settings"/>});

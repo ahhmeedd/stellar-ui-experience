@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { Dashboard } from '@/features/shell/Content';
+export const Route=createFileRoute('/_authenticated/dashboard')({head:()=>({meta:[{title:'Accueil — Aeronova Engineering'},{name:'description',content:'Vue d’ensemble de l’activité de l’équipe Aeronova.'},{property:'og:title',content:'Accueil — Aeronova Engineering'},{property:'og:description',content:'Vue d’ensemble de l’activité de l’équipe Aeronova.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=>{const {identity}=Route.useRouteContext();return <Dashboard identity={identity}/>}});

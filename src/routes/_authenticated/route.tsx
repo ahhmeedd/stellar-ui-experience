@@ -1,0 +1,7 @@
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { supabase } from '@/integrations/supabase/client';
+import { Workspace, type Identity } from '@/features/shell/Workspace';
+import { navigation } from '@/features/shell/nav';
+import { useRouterState } from '@tanstack/react-router';
+export const Route=createFileRoute('/_authenticated')({ssr:false,beforeLoad:async({location})=>{const {data,error}=await supabase.auth.getUser();if(error||!data.user)throw redirect({to:'/auth'});const [{data:profile},{data:role}]=await Promise.all([supabase.from('profiles').select('id,full_name,language,is_active').eq('id',data.user.id).maybeSingle(),supabase.from('user_roles').select('role').eq('user_id',data.user.id).maybeSingle()]);if(!profile?.is_active||!role){await supabase.auth.signOut();throw redirect({to:'/auth'})}const identity:Identity={id:profile.id,full_name:profile.full_name,language:profile.language,role:role.role};if(identity.role!=='admin'&&navigation.some(item=>item.path===location.pathname&&item.adminOnly))throw redirect({to:'/dashboard'});return {identity}},component:ProtectedLayout});
+function ProtectedLayout(){const {identity}=Route.useRouteContext();const path=useRouterState({select:s=>s.location.pathname});const title=navigation.find(item=>item.path===path)?.key||'dashboard';return <Workspace identity={identity} title={title}><Outlet/></Workspace>}

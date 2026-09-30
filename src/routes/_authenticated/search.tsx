@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { EmptySection } from '@/features/shell/Content';
+export const Route=createFileRoute('/_authenticated/search')({head:()=>({meta:[{title:'Recherche — Aeronova Engineering'},{name:'description',content:'Espace Recherche de l’équipe Aeronova Engineering.'},{property:'og:title',content:'Recherche — Aeronova Engineering'},{property:'og:description',content:'Espace Recherche de l’équipe Aeronova Engineering.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=> <EmptySection title="search"/>});
